@@ -12,3 +12,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+const signupForm = document.getElementById("signup-form");
+const loginForm = document.getElementById("login-form");
