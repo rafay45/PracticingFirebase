@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBqnr4-p-Eo8nmz-napE-CYlLS6GhvPapk",
@@ -22,29 +22,66 @@ const signupFormEmail = document.getElementById("signup-email");
 const signupFormPassword = document.getElementById("signup-password");
 const loginFormEmail = document.getElementById("login-email");
 const loginFormPassword = document.getElementById("login-password");
-const alert = document.getElementById("alert");
+const text = document.getElementById("alert");
+const log = document.getElementById('log');
+const logout = document.getElementById('logout')
 
-if(signupForm){
+if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
         e.preventDefault()
         const signupEmail = signupFormEmail.value;
         const signupPassword = signupFormPassword.value;
-        const userName = signupUsername.value;
-    
+
         createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
             .then((userCredential) => {
-               
+
                 window.location.href = "login.html"
-    
+
             })
             .catch((error) => {
-                console.log("Error is signup listner" , error);
-                
-                // ..
+                console.log(error.message);
             });
-    
+
     })
 }
 
+if(log){
+    log.addEventListener('click', (e) => {
+     e.preventDefault()
+     window.location.href = "login.html"
+    })
+}
+
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const loginEmail = loginFormEmail.value;
+        const loginPassword = loginFormPassword.value;
+
+        signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+            .then((userCredential) => {
+
+                window.location.href = "home.html"
+                text.innerText = `${signupUsername} Login Successful`
+                console.log(userCredential.user);
+
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    })
+
+}
+
+if (logout) {
+    logout.addEventListener('click', () => {
+        signOut(auth).then(() => {
+            window.location.href = "index.html"
+        }).catch((error) => {
+            console.log(error.message);
+
+        });
+    })
+}
 
 
