@@ -142,7 +142,7 @@ body {
 }
 
 .success-box {
-    display: none;
+    /* display: none; */
     background: #fff;
     padding: 40px;
     border-radius: 12px;
@@ -160,7 +160,7 @@ body {
 
 .circle-loader {
     fill: none;
-    stroke: #4caf50;
+    stroke: #171717;
     stroke-width: 8;
     stroke-dasharray: 300;
     stroke-dashoffset: 300;
@@ -181,7 +181,7 @@ body {
 }
 
 .checkmark-circle {
-    fill: #4caf50;
+    fill: #171717;
     transform: scale(0);
     animation: popIn 0.3s ease-out forwards;
     animation-delay: 1s;
