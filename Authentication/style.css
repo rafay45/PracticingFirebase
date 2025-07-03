@@ -140,10 +140,15 @@ body {
     align-items: center;
     font-family: 'Segoe UI', sans-serif;
 }
-
+.para{
+    position: absolute;
+    top: 50%;
+    left: 22%;
+}
 .success-box {
     /* display: none; */
     background: #fff;
+    position: relative;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -187,7 +192,7 @@ body {
     animation-delay: 1s;
 }
 
-h2 {
+#h2 {
     font-size: 22px;
     color: #333;
     opacity: 0;
