@@ -12,9 +12,13 @@ body {
     border-radius: 10px;
     border: 1px solid #ccc;
 }
-
+.img{
+    text-align: center;
+    width: 100%;
+}
 h1 {
     text-align: center;
+    font-size: 3em;
     margin-bottom: 20px;
     color: rgb(56, 53, 53);
 }
