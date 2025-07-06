@@ -1,5 +1,14 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
+
+let form = document.getElementById('registration-form');
+let countries = document.getElementById('countries');
+let cities = document.getElementById('cities');
+
+
+
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDCmifs89jRdGoZgoke8URa9tibVuEQGBk",
   authDomain: "saylani-s-registration-form.firebaseapp.com",
@@ -24,5 +33,6 @@ async function addInfo() {
     
   }
 }
+
 
 
