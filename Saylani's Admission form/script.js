@@ -1,13 +1,22 @@
-import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-let form = document.getElementById('registration-form');
-let countries = document.getElementById('countries');
-let cities = document.getElementById('cities');
-
-
-
-
+let form = document.getElementById('registration-form').value;
+let countries = document.getElementById('countries').value;
+let cities = document.getElementById('cities').value;
+let courses = document.getElementById('countries').value;
+let proficiency = document.getElementById('proficiency').value;
+let fullName = document.getElementById('full-name').value;
+let fatherName = document.getElementById('father-name').value;
+let email = document.getElementById('email').value;
+let phone = document.getElementById('phone').value;
+let cnic = document.getElementById('cnic').value;
+let fatherCnic = document.getElementById('fatherCnic').value;
+let date = document.getElementById('date').value;
+let gender = document.getElementById('gender').value;
+let address = document.getElementById('address').value;
+let qualification = document.getElementById('qualification').value;
+let ques = document.getElementById('ques').value;
 
 const firebaseConfig = {
   apiKey: "AIzaSyDCmifs89jRdGoZgoke8URa9tibVuEQGBk",
@@ -23,16 +32,32 @@ const app = initializeApp(firebaseConfig)
 
 const getStore = getFirestore(app)
 
-async function addInfo() {
+form.addEventListener('submit', async (e) => {
+  e.preventDefault()
   try {
     await addDoc(collection(getStore, "users"), {
-      
+      countries,
+      cities,
+      courses,
+      proficiency,
+      cnic,
+      fatherCnic,
+      date,
+      qualification,
+      ques,
+      fullName,
+      fatherName,
+      email,
+      phone,
+      gender,
+      address
     })
   } catch (error) {
     console.log("Error is getStore :: ", error);
-    
+
   }
-}
+})
+
 
 
 
