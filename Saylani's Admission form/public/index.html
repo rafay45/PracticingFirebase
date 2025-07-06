@@ -1,89 +1,142 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.10.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.10.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js" defer></script>
+</head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<body>
+
+    <div class="form-container">
+        <div class="img"><img src="https://forms.saylaniwelfare.com/static/media/logo.22bf709605809177256c.png" alt="">
+        </div>
+        <h1>Registration Form-<span style="color: rgb(34, 97, 179);">SMIT</span></h1>
+        <form type="submit" id="registration-form">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Select country</label>
+                    <select id="countries" required>
+                        <option disabled selected>Select country</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Turkey">Turkey</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select city</label>
+                    <select id="cities" required>
+                        <option disabled selected>Select city</option>
+                        <option value="Karachi">Karachi</option>
+                        <option value="Islamabad">Islamabad</option>
+                        <option value="Sukkur">Sukkur</option>
+                        <option value="Quetta">Quetta</option>
+                        <option value="Gujranwala">Gujranwala</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select course or event</label>
+                    <select id="courses" required>
+                        <option disabled selected>Select course or event</option>
+                        <option value="Web & Mobile App Development">Web & Mobile App Development</option>
+                        <option value="Graphic Designing">Graphic Designing</option>
+                        <option value="AI & Chatbot">AI & Chatbot</option>
+                        <option value="CCO (Call Center Officer)">CCO (Call Center Officer)</option>
+                        <option value="Video Editing">Video Editing</option>
+                        <option value="Amazon FBA">Amazon FBA</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Blockchain">Blockchain</option>
+                        <option value="Data Science">Data Science</option>
+                    </select>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Select your computer proficiency</label>
+                    <select id="proficiency" required>
+                        <option disabled selected>Select your computer proficiency</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                        <option value="Expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Full name</label>
+                    <input id="full-name" type="text" placeholder="Full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Father name</label>
+                    <input id="father-name" type="text" placeholder="Father name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input id="email" type="email" placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input id="phone" type="text" placeholder="Phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>CNIC</label>
+                    <input id="cnic" type="text" placeholder="CNIC" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Father's CNIC (optional)</label>
+                    <input id="fatherCnic" type="text" placeholder="Father's CNIC (optional)">
+                </div>
+
+                <div class="form-group">
+                    <label>Date of birth</label>
+                    <input id="date" type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Select gender</label>
+                    <select id="gender" required>
+                        <option disabled selected>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Address</label>
+                    <input id="address" type="text" placeholder="Address" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Last qualification</label>
+                    <input id="qualification" type="text" placeholder="Last qualification" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Do you have a Laptop?</label>
+                    <select id="ques" required>
+                        <option disabled selected>Do you have a Laptop?</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+            </div>
+            <button id="addData">Submit</button>
+        </form>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+</body>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
 </html>
