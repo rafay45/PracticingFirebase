@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 let form = document.getElementById('registration-form');
 let countries = document.getElementById('countries');
@@ -36,7 +36,7 @@ if (addData) {
   addData.addEventListener('click', async (e) => {
     e.preventDefault()
     try {
-      await addDoc(collection(getStore, "users"), {
+     const userData = await addDoc(collection(getStore, "usersInfo"), {
         userCountries: countries.value,
         userCities: cities.value,
         userCourses: courses.value,
@@ -54,7 +54,7 @@ if (addData) {
         UserQues: ques.value,
       })
       form.reset()
-      alert('Form has been sunmitted')
+      alert('Form has been sunmitted', userData.email)
     } catch (error) {
       console.log("Error is getStore :: ", error);
     }
