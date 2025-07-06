@@ -4,7 +4,7 @@ import { getFirestore, collection, addDoc } from "https://www.gstatic.com/fireba
 let form = document.getElementById('registration-form');
 let countries = document.getElementById('countries');
 let cities = document.getElementById('cities');
-let courses = document.getElementById('countries');
+let courses = document.getElementById('courses');
 let proficiency = document.getElementById('proficiency');
 let fullName = document.getElementById('full-name');
 let fatherName = document.getElementById('father-name');
