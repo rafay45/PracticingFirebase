@@ -17,6 +17,7 @@ let gender = document.getElementById('gender').value;
 let address = document.getElementById('address').value;
 let qualification = document.getElementById('qualification').value;
 let ques = document.getElementById('ques').value;
+let addData = document.getElementById('addData')
 
 const firebaseConfig = {
   apiKey: "AIzaSyDCmifs89jRdGoZgoke8URa9tibVuEQGBk",
@@ -29,34 +30,37 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig)
-
 const getStore = getFirestore(app)
 
-form.addEventListener('submit', async (e) => {
+if(addData){
+addData.addEventListener('click', async (e) => {
   e.preventDefault()
   try {
     await addDoc(collection(getStore, "users"), {
-      countries,
-      cities,
-      courses,
-      proficiency,
-      cnic,
-      fatherCnic,
-      date,
-      qualification,
-      ques,
-      fullName,
-      fatherName,
-      email,
-      phone,
-      gender,
-      address
+      userCountries: countries,
+      userCities: cities,
+      userCourses: courses,
+      userProficiency: proficiency,
+      userCnic: cnic,
+      userFatherCnic: fatherCnic,
+      userDate: date,
+      userQualification: qualification,
+      UserQues: ques,
+      userFullName: fullName,
+      userFatherName: fatherName,
+      userEmail: email,
+      userPhone: phone,
+      userGender: gender,
+      userAddress: address
     })
+    alert('information added')
   } catch (error) {
     console.log("Error is getStore :: ", error);
 
   }
 })
+}
+
 
 
 
