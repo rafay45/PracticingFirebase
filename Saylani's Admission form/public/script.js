@@ -18,8 +18,6 @@ let address = document.getElementById('address');
 let qualification = document.getElementById('qualification');
 let ques = document.getElementById('ques');
 let addData = document.getElementById('addData')
-let inputs = document.querySelectorAll("select, input")
-let empty = false;
 
 countries.addEventListener('change', () => {
   if (countries.value === "Turkey") {
