@@ -19,6 +19,25 @@ let qualification = document.getElementById('qualification');
 let ques = document.getElementById('ques');
 let addData = document.getElementById('addData')
 
+countries.addEventListener('change', () => {
+if (countries.value === "Turkey") {
+    cities.innerHTML = `
+    <option disabled selected>Select city</option>
+                        <option value="Istabul">Istabul</option>
+    `
+  }else{
+    cities.innerHTML = `
+    <option disabled selected>Select city</option>
+                        <option value="Karachi">Karachi</option>
+                        <option value="Islamabad">Islamabad</option>
+                        <option value="Sukkur">Sukkur</option>
+                        <option value="Quetta">Quetta</option>
+                        <option value="Gujranwala">Gujranwala</option>
+    `
+  }
+})
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDCmifs89jRdGoZgoke8URa9tibVuEQGBk",
   authDomain: "saylani-s-registration-form.firebaseapp.com",
@@ -36,7 +55,7 @@ if (addData) {
   addData.addEventListener('click', async (e) => {
     e.preventDefault()
     try {
-     const userData = await addDoc(collection(getStore, "usersInfo"), {
+      const userData = await addDoc(collection(getStore, "usersInfo"), {
         userCountries: countries.value,
         userCities: cities.value,
         userCourses: courses.value,
