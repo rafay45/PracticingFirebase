@@ -79,6 +79,10 @@ select:focus {
 }
 
 @media (max-width: 768px) {
+    .img>img {
+        width: 80%;
+    }
+
     .form-grid {
         grid-template-columns: 1fr;
     }
@@ -93,6 +97,10 @@ select:focus {
     }
 
     @media (max-width: 480px) {
+        .img>img {
+            width: 80%;
+        }
+
         body {
             margin: 10px;/
         }
