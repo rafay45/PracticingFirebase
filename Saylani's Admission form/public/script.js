@@ -56,11 +56,11 @@ if (addData) {
     e.preventDefault()
     try {
       if (email.value === "") {
-         Swal.fire({
-        icon: "error",
-        title: "Missing Fields",
-        text: "Please fill in all fields.",
-      });
+        Swal.fire({
+          icon: "error",
+          title: "Missing Fields",
+          text: "Please fill in all fields.",
+        });
       } else {
         const userData = await addDoc(collection(getStore, "usersInfo"), {
           userCountries: countries.value.trim(),
@@ -82,7 +82,7 @@ if (addData) {
         Swal.fire({
           icon: 'success',
           title: 'Submitted',
-          text: 'Form Submitted Successfully'
+          text: 'Form Submitted Successfully',
         })
         form.reset()
       }

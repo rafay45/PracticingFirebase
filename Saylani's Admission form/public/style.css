@@ -117,3 +117,28 @@ select:focus {
         }
     }
 }
+.userData {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    text-align: center;
+}
+.userData h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: rgb(56, 53, 53);
+}
+.userData p {
+    margin: 5px 0;
+    color: #333;
+}
+#dataContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
