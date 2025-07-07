@@ -90,5 +90,11 @@ if (addData) {
       console.log("Error is getStore :: ", error);
     }
 
+    const snapshots = await getDocs(collection(getStore, "usersInfo"));
+    snapshots.forEach((doc) => {
+  console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+});
+    
+      
   })
 }
