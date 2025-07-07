@@ -18,14 +18,16 @@ let address = document.getElementById('address');
 let qualification = document.getElementById('qualification');
 let ques = document.getElementById('ques');
 let addData = document.getElementById('addData')
+let inputs = document.querySelectorAll("select, input")
+let empty = false;
 
 countries.addEventListener('change', () => {
-if (countries.value === "Turkey") {
+  if (countries.value === "Turkey") {
     cities.innerHTML = `
     <option disabled selected>Select city</option>
-                        <option value="Istabul">Istabul</option>
+                        <option value="Istanbul">Istanbul</option>
     `
-  }else{
+  } else {
     cities.innerHTML = `
     <option disabled selected>Select city</option>
                         <option value="Karachi">Karachi</option>
@@ -55,27 +57,40 @@ if (addData) {
   addData.addEventListener('click', async (e) => {
     e.preventDefault()
     try {
-      const userData = await addDoc(collection(getStore, "usersInfo"), {
-        userCountries: countries.value,
-        userCities: cities.value,
-        userCourses: courses.value,
-        userProficiency: proficiency.value,
-        userFullName: fullName.value,
-        userFatherName: fatherName.value,
-        userEmail: email.value,
-        userPhone: phone.value,
-        userCnic: cnic.value,
-        userFatherCnic: fatherCnic.value,
-        userDate: date.value,
-        userGender: gender.value,
-        userAddress: address.value,
-        userQualification: qualification.value,
-        UserQues: ques.value,
-      })
-      form.reset()
-      alert('Form has been sunmitted', userData.email)
+      if (email.value === "") {
+         Swal.fire({
+        icon: "error",
+        title: "Missing Fields",
+        text: "Please fill in all fields.",
+      });
+      } else {
+        const userData = await addDoc(collection(getStore, "usersInfo"), {
+          userCountries: countries.value.trim(),
+          userCities: cities.value.trim(),
+          userCourses: courses.value.trim(),
+          userProficiency: proficiency.value.trim(),
+          userFullName: fullName.value.trim(),
+          userFatherName: fatherName.value.trim(),
+          userEmail: email.value.trim(),
+          userPhone: phone.value.trim(),
+          userCnic: cnic.value.trim(),
+          userFatherCnic: fatherCnic.value.trim(),
+          userDate: date.value.trim(),
+          userGender: gender.value.trim(),
+          userAddress: address.value.trim(),
+          userQualification: qualification.value.trim(),
+          UserQues: ques.value.trim(),
+        })
+        Swal.fire({
+          icon: 'success',
+          title: 'Submitted',
+          text: 'Form Submitted Successfully'
+        })
+      }
     } catch (error) {
       console.log("Error is getStore :: ", error);
     }
+
   })
+
 }

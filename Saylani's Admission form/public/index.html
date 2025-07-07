@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA5FBMVEVHcEyXy1qPx0yWw7ACcLev1Y8Gc7nO5bbC3rgAMqKewN6j0W/Z6d2q1HmSxHsGdLkHa7agz2hhlcpdl8SRyE1Zm8xqo8+22Y/A1OqOxkm12Yxun8zi8NT1+u+v0qPa5vRvos74+/1kopKLxkP///8Ec7kAbbyQyTiJxD7r9OD6/fWFwzPF4aWt1YDj8NS63JYAaLaezmM/jpvx+OnV6r9QmY6l0XSSyVEGdaxRkcRsoMyDrtPa68gkgaScwbnK3dy508sYebiDv01kp3uCtKJ9rbZ8uVzX5uBBicMwgrl4vQpUlqnYrdyFAAAAI3RSTlMAk+oemfzq/hIT+OCSTvnKTqQ0k8pOpJDopJakpE7Kyk6WynOsbpQAAAJXSURBVDiNbVPXctswEIRkSZS7PXZ6cwKwoLN3ilR1+///yYGSLdnJPpAzt3v9gNAeH0aXk7k9uRxdof/geGTv8fhx+p4/pAFOdfbWfVI8vFC7X3FyEOS4LLbWeZgkSeP3onl1tOfLhwJck4Xr8pgwNct7SXW8E0xKv3h0QuxijLlFAGzmg6D8vKvv5KGaO0tDvwgIaXPbzrubbYJ567/wrwKiIEbSmiSjqqqcEHjP8+AjIgp0RFnn2874GwjK4r5wgAukDDwTgVEihCWs0HZWM4TuqnLtJMCmnpdJDF0QZmlhWdbYcSrrCv1uV4VzIbhnEIhUKErriMXCUo/Os7hBv1prbbs65TiVeiy1rhUFTUQVmTmh/INYV5WhG2igpMQet2isVEQoY6Tzm4sLpNZdkbie1AE3XXCLURr3jZB73x5LJPQMBLseuafjWDESMUIoCHKRobEUZdhPyeOZYBC5FhFRlLCo80M9RD+lXjVmTDyIzRaoVkRZNQSAIhfpLTrTqXAw96TazZiMayjAqhV5tt10gH4EgciXEHUP3i80Fn7iZecIac1XOTvgSUb738pZ4Ax28V2mwXx1KOB0u05o7hoEU5jixjdbZts86qlP0cyh9P4uz3DqLn2ojAja88LwISTAg+1JWRiDYgZmmaX4SRtVYwN/urvJqeDY3eRhC451bYa49kMzutfDP5LYBMnzdde23ezZbzYuzvDr2UOMoXFwN0nY5E24XJjRD9++vgGYFtjtgYPACz69f5zTa7hIQJYFAcZf/nm8BueD22EWnJ5+PT8w/gWeRoWx/b/EfQAAAABJRU5ErkJggg==" type="image/x-icon">
+    <link rel="shortcut icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAA5FBMVEVHcEyXy1qPx0yWw7ACcLev1Y8Gc7nO5bbC3rgAMqKewN6j0W/Z6d2q1HmSxHsGdLkHa7agz2hhlcpdl8SRyE1Zm8xqo8+22Y/A1OqOxkm12Yxun8zi8NT1+u+v0qPa5vRvos74+/1kopKLxkP///8Ec7kAbbyQyTiJxD7r9OD6/fWFwzPF4aWt1YDj8NS63JYAaLaezmM/jpvx+OnV6r9QmY6l0XSSyVEGdaxRkcRsoMyDrtPa68gkgaScwbnK3dy508sYebiDv01kp3uCtKJ9rbZ8uVzX5uBBicMwgrl4vQpUlqnYrdyFAAAAI3RSTlMAk+oemfzq/hIT+OCSTvnKTqQ0k8pOpJDopJakpE7Kyk6WynOsbpQAAAJXSURBVDiNbVPXctswEIRkSZS7PXZ6cwKwoLN3ilR1+///yYGSLdnJPpAzt3v9gNAeH0aXk7k9uRxdof/geGTv8fhx+p4/pAFOdfbWfVI8vFC7X3FyEOS4LLbWeZgkSeP3onl1tOfLhwJck4Xr8pgwNct7SXW8E0xKv3h0QuxijLlFAGzmg6D8vKvv5KGaO0tDvwgIaXPbzrubbYJ567/wrwKiIEbSmiSjqqqcEHjP8+AjIgp0RFnn2874GwjK4r5wgAukDDwTgVEihCWs0HZWM4TuqnLtJMCmnpdJDF0QZmlhWdbYcSrrCv1uV4VzIbhnEIhUKErriMXCUo/Os7hBv1prbbs65TiVeiy1rhUFTUQVmTmh/INYV5WhG2igpMQet2isVEQoY6Tzm4sLpNZdkbie1AE3XXCLURr3jZB73x5LJPQMBLseuafjWDESMUIoCHKRobEUZdhPyeOZYBC5FhFRlLCo80M9RD+lXjVmTDyIzRaoVkRZNQSAIhfpLTrTqXAw96TazZiMayjAqhV5tt10gH4EgciXEHUP3i80Fn7iZecIac1XOTvgSUb738pZ4Ax28V2mwXx1KOB0u05o7hoEU5jixjdbZts86qlP0cyh9P4uz3DqLn2ojAja88LwISTAg+1JWRiDYgZmmaX4SRtVYwN/urvJqeDY3eRhC451bYa49kMzutfDP5LYBMnzdde23ezZbzYuzvDr2UOMoXFwN0nY5E24XJjRD9++vgGYFtjtgYPACz69f5zTa7hIQJYFAcZf/nm8BueD22EWnJ5+PT8w/gWeRoWx/b/EfQAAAABJRU5ErkJggg=="
+        type="image/x-icon">
     <title>Registration Form</title>
     <link rel="stylesheet" href="style.css">
+    <!-- For SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="module" src="script.js" defer></script>
 </head>
 
@@ -134,7 +139,7 @@
                 </div>
 
             </div>
-            <button id="addData">Submit</button>
+            <button type="submit" id="addData">Submit</button>
         </form>
     </div>
 
