@@ -84,6 +84,7 @@ if (addData) {
           title: 'Submitted',
           text: 'Form Submitted Successfully'
         })
+        form.reset()
       }
     } catch (error) {
       console.log("Error is getStore :: ", error);
