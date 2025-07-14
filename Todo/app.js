@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getDocs, collection, addDoc, getFirestore, deleteDocs, Doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getDocs, collection, addDoc, getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmUHMVGUXGvNG1WBSyyqEbLMnw3VOjbYE",
@@ -17,6 +17,7 @@ const db = getFirestore(app);
 const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const todoList = document.getElementById('todoList');
+const todoItems = document.getElementById('todoItems');
 
 todoHandler.addEventListener('click', async () => {
     let inputValue = todoInput.value
@@ -34,19 +35,24 @@ todoHandler.addEventListener('click', async () => {
 async function getting() {
     try {
         const querySnapshot = await getDocs(collection(db, "Todo"));
-        querySnapshot.forEach((doc) => {
+        querySnapshot.forEach(doc => {
             const { id, task } = doc.data()
-            console.log(`${id} => ${task}`);
-            todoList.innerHTML += `<li class="todo-item"><span>${task}</span> <div><button id=${id} class="btn-edit">Edit</button><button id=${id} class="btn-delete">Delete</button></div></li>`
+            todoList.innerHTML += `<li class="todo-item"><span>${task}</span> <div><button class="btn-edit">Edit</button><button id=${id} class="btn-delete">Delete</button></div></li>`
+            todoInput.value = ""
         });
-        todoList.childNodes.forEach((items) => {
-          items.addEventListener('click', deleteTodo);
-        })
     } catch (error) {
-        console.log("The Error is getting Function", error);
+        console.log("The error is getting function", error);
 
     }
 }
-async function deleteTodo() {
-    
-}
+
+todoList.childNodes.forEach(items => {
+    items.addEventListener('click', async function deleteTodo() {
+    const id = this.id
+    try {
+        await deleteDoc(doc(db, "Todo", id));
+    } catch (error) {
+        console.log("The Error is DeleteDocs", error);
+    }
+});
+});
