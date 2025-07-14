@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getDoc, collection, addDoc, getFirestore } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getDocs, collection, addDoc, getFirestore, deleteDocs, Doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmUHMVGUXGvNG1WBSyyqEbLMnw3VOjbYE",
@@ -20,14 +20,33 @@ const todoList = document.getElementById('todoList');
 
 todoHandler.addEventListener('click', async () => {
     let inputValue = todoInput.value
-   todoList.innerHTML += `<li class="todo-item"><span>${inputValue}</span> <div><button class="btn-edit">Edit</button><button class="btn-delete">Delete</button></div></li>`
     try {
         await addDoc(collection(db, "Todo"), {
-            id: new Date().getTime(),  
+            id: new Date().getTime(),
             task: inputValue
         })
-        todoInput.value = ""
+        getting()
     } catch (error) {
         console.log("The Error is todoHandler", error);
     }
 })
+
+async function getting() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "Todo"));
+        querySnapshot.forEach((doc) => {
+            const { id, task } = doc.data()
+            console.log(`${id} => ${task}`);
+            todoList.innerHTML += `<li class="todo-item"><span>${task}</span> <div><button id=${id} class="btn-edit">Edit</button><button id=${id} class="btn-delete">Delete</button></div></li>`
+        });
+        todoList.childNodes.forEach((items) => {
+          items.addEventListener('click', deleteTodo);
+        })
+    } catch (error) {
+        console.log("The Error is getting Function", error);
+
+    }
+}
+async function deleteTodo() {
+    
+}
