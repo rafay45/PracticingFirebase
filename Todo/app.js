@@ -17,10 +17,16 @@ const db = getFirestore(app);
 const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const todoList = document.getElementById('todoList');
+const li = document.createElement('li')
 
 
 todoHandler.addEventListener('click', async () => {
-    let inputVal = todoInput.value
+    let inputVal = todoInput.value.trim()
+    if(!inputVal){
+        alert("field is empty")
+        return;
+    }
+
     try {
         await addDoc(collection(db, 'Todo'), {
             id: new Date().getTime(),
@@ -30,23 +36,20 @@ todoHandler.addEventListener('click', async () => {
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
     }
+    fetching()
+})
 
+async function fetching() {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
-            todoList.innerHTML += `
-             <li class="todo-item">
-            <input id= ${getId} class="inp" value=${getTodo} type="text" readonly>
-            <button id= ${getId}  class="btn-edit">Edit</button>
-            <button id= ${getId}  class="btn-delete">Delete</button>
-            </li>
-           `
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
 
     }
-})
+}
 
+window.addEventListener("DOMContentLoaded", fetching)
