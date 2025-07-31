@@ -34,13 +34,19 @@ todoHandler.addEventListener('click', async () => {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         querySnapshot.forEach((doc) => {
-           const getId = doc.data().id
-           const getTodo = doc.data().todo
-           todoList.innerHTML = ``
+            const getId = doc.data().id
+            const getTodo = doc.data().todo
+            todoList.innerHTML += `
+             <li class="todo-item">
+            <input id= ${getId} class="inp" value=${getTodo} type="text" readonly>
+            <button id= ${getId}  class="btn-edit">Edit</button>
+            <button id= ${getId}  class="btn-delete">Delete</button>
+            </li>
+           `
         });
     } catch (error) {
-       console.log('The error is in getDocs ::', error);
-       
+        console.log('The error is in getDocs ::', error);
+
     }
 })
 

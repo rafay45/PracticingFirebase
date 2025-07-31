@@ -69,17 +69,12 @@
 
     .todo-item {
         background: #f1f1f1;
-        padding: 12px 15px;
+        padding: 12px 11px;
         border-radius: 8px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         margin-bottom: 10px;
-    }
-
-    .todo-item span {
-        word-break: break-word;
-        color: #333;
     }
 
   .todo-item .btn-edit,
@@ -109,3 +104,15 @@
 .todo-item .btn-delete:hover {
     background-color: #c82333;
 }
+.inp{
+    width: 65%;
+    padding: 3px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border: none;
+    font-size: 16px;
+}
+    .inp:focus {
+        outline: none;
+    }
