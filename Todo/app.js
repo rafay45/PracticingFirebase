@@ -19,6 +19,18 @@ const todoInput = document.getElementById('todoInput');
 const todoList = document.getElementById('todoList');
 const todoItems = document.getElementById('todoItems');
 
+
 todoHandler.addEventListener('click', async () => {
-    
+    let inputVal = todoInput.value
+    try {
+        await addDoc(collection(db, 'Todo'),{
+        id: new Date().getTime(),
+        todo: inputVal
+    })
+     todoInput.value = ""
+    } catch (error) {
+        console.log('The Error is in addDocs ::', error );
+        
+    }
 })
+
