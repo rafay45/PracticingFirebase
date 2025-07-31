@@ -22,7 +22,7 @@ const li = document.createElement('li')
 
 todoHandler.addEventListener('click', async () => {
     let inputVal = todoInput.value.trim()
-    if(!inputVal){
+    if (!inputVal) {
         alert("field is empty")
         return;
     }
@@ -32,24 +32,38 @@ todoHandler.addEventListener('click', async () => {
             id: new Date().getTime(),
             todo: inputVal
         })
+        append(inputVal)
         todoInput.value = ""
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
     }
-    fetching()
 })
 
 async function fetching() {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
+        todoList.innerHTML = ""
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
+            append(getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
 
     }
+}
+
+function append(todo) {
+    todoInput.value = ""
+    li.innerHTML += `
+            <li class="todo-item">
+            <input  class="inp" value=${todo} type="text" readonly>
+            <button  class="btn-edit">Edit</button>
+            <button  class="btn-delete">Delete</button>
+            </li>
+           `
+    todoList.appendChild(li)
 }
 
 window.addEventListener("DOMContentLoaded", fetching)
