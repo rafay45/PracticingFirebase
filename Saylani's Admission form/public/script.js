@@ -92,7 +92,7 @@ if (addData) {
 
     const snapshots = await getDocs(collection(getStore, "usersInfo"));
     snapshots.forEach((doc) => {
-  console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-});   
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+    });
   })
 }
