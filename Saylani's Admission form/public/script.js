@@ -37,7 +37,6 @@ countries.addEventListener('change', () => {
   }
 })
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyDCmifs89jRdGoZgoke8URa9tibVuEQGBk",
   authDomain: "saylani-s-registration-form.firebaseapp.com",
