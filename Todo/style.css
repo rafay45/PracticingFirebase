@@ -117,7 +117,6 @@
         border: none;
         font-size: 16px;
     }
-
-    .inp:focus {
+    /* .inp:focus {
         outline: none;
-    }
+    } */

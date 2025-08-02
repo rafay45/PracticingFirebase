@@ -62,29 +62,29 @@ function append(id, todo) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="${id}" class="inp" value=${todo} type="text" readonly>
+            <input id="${id}" class="inp" value=${todo} type="text">
             <button id="${id}"  class="btn-edit">Edit</button>
             <button id="${id}" class="btn-delete">Delete</button>
             </li>
            `
+
+    let getInput = ul.childNodes[1].childNodes[1]
+    getInput.readOnly = true
+    getInput.style.outline = "none"
+
     main.appendChild(ul)
 }
 
 
 ul.addEventListener('click', (e) => {
     let inp = todoList.childNodes[1].children[0].id;
-    let getInput = document.querySelector('.inp')
+    let more = document.querySelector('input')
     let btn = e.target.classList.contains("btn-edit")
     if (btn) {
-     if(e.target.id === inp){
-        if(add){
-            remove
-            getInput.focus()
+        if (e.target.id === inp) {
+            more.removeAttribute('readonly');
+            more.focus()
         }
-        if(remove){
-            add
-        }
-     }
     }
 
 })
