@@ -22,6 +22,7 @@ const li = document.createElement('li')
 
 todoHandler.addEventListener('click', async () => {
     let inputVal = todoInput.value.trim()
+    let id = new Date().getTime()
     if (!inputVal) {
         alert("field is empty")
         return;
@@ -29,10 +30,10 @@ todoHandler.addEventListener('click', async () => {
 
     try {
         await addDoc(collection(db, 'Todo'), {
-            id: new Date().getTime(),
+            id: id,
             todo: inputVal
         })
-        append(inputVal)
+        append(id, inputVal)
         todoInput.value = ""
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
@@ -46,7 +47,7 @@ async function fetching() {
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
-            append(getTodo)
+            append(getId, getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
@@ -54,16 +55,18 @@ async function fetching() {
     }
 }
 
-function append(todo) {
+function append(id, todo) {
     todoInput.value = ""
     li.innerHTML += `
             <li class="todo-item">
-            <input  class="inp" value=${todo} type="text" readonly>
-            <button  class="btn-edit">Edit</button>
-            <button  class="btn-delete">Delete</button>
+            <input id=${id}  class="inp" value=${todo} type="text" readonly>
+            <button id=${id}  class="btn-edit">Edit</button>
+            <button id=${id}  class="btn-delete">Delete</button>
             </li>
            `
     todoList.appendChild(li)
+    console.log(todoList);
+    
 }
 
 window.addEventListener("DOMContentLoaded", fetching)
