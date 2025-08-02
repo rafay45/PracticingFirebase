@@ -16,9 +16,10 @@ const db = getFirestore(app);
 
 const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
-const todoList = document.getElementById('todoList');
-const li = document.createElement('li')
-li.className = "todo-item"
+const main = document.getElementById('main');
+const ul = document.createElement('ul')
+ul.className = "todo-list"
+ul.id = "todoList"
 
 
 todoHandler.addEventListener('click', async () => {
@@ -44,7 +45,7 @@ todoHandler.addEventListener('click', async () => {
 async function fetching() {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
-        todoList.innerHTML = ""
+        main.innerHTML = ""
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
@@ -59,21 +60,16 @@ async function fetching() {
 
 function append(id, todo) {
     todoInput.value = ""
-    li.innerHTML += `
+    ul.innerHTML += `
+             <li class="todo-item">
             <input id="${id}" class="inp" value=${todo} type="text" readonly>
-            <button id="${id}" onclick="edit(this)" class="btn-edit">Edit</button>
+            <button id="${id}"  class="btn-edit">Edit</button>
             <button id="${id}" class="btn-delete">Delete</button>
+            </li>
            `
-    todoList.appendChild(li)
+    main.appendChild(ul)
     console.log(todoList);
 
-}
-
-function edit(button) {
-    // const getClass = document.querySelector('.btn-edit')
-    // console.log(getClass);
-    console.log(button);
-    
 }
 
 window.addEventListener("DOMContentLoaded", fetching)
