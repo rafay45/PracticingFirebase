@@ -68,8 +68,25 @@ function append(id, todo) {
             </li>
            `
     main.appendChild(ul)
-    console.log(todoList);
-
 }
+
+
+ul.addEventListener('click', (e) => {
+    let inp = todoList.childNodes[1].children[0].id;
+    let getInput = document.querySelector('.inp')
+    let btn = e.target.classList.contains("btn-edit")
+    if (btn) {
+     if(e.target.id === inp){
+        if(add){
+            remove
+            getInput.focus()
+        }
+        if(remove){
+            add
+        }
+     }
+    }
+
+})
 
 window.addEventListener("DOMContentLoaded", fetching)
