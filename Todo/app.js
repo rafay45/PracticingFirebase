@@ -18,6 +18,7 @@ const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const todoList = document.getElementById('todoList');
 const li = document.createElement('li')
+li.className = "todo-item"
 
 
 todoHandler.addEventListener('click', async () => {
@@ -48,6 +49,7 @@ async function fetching() {
             const getId = doc.data().id
             const getTodo = doc.data().todo
             append(getId, getTodo)
+            // edit(getId, getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
@@ -58,14 +60,19 @@ async function fetching() {
 function append(id, todo) {
     todoInput.value = ""
     li.innerHTML += `
-            <li class="todo-item">
-            <input id=${id}  class="inp" value=${todo} type="text" readonly>
-            <button id=${id}  class="btn-edit">Edit</button>
-            <button id=${id}  class="btn-delete">Delete</button>
-            </li>
+            <input id="${id}" class="inp" value=${todo} type="text" readonly>
+            <button id="${id}" onclick="edit(this)" class="btn-edit">Edit</button>
+            <button id="${id}" class="btn-delete">Delete</button>
            `
     todoList.appendChild(li)
     console.log(todoList);
+
+}
+
+function edit(button) {
+    // const getClass = document.querySelector('.btn-edit')
+    // console.log(getClass);
+    console.log(button);
     
 }
 
