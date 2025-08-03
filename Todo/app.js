@@ -18,13 +18,13 @@ const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const main = document.getElementById('main');
 const ul = document.createElement('ul')
+// const li = document.createElement('li')
 ul.className = "todo-list"
 ul.id = "todoList"
 
 
 todoHandler.addEventListener('click', async () => {
     let inputVal = todoInput.value.trim()
-    let id = new Date().getTime()
     if (!inputVal) {
         alert("field is empty")
         return;
@@ -32,10 +32,10 @@ todoHandler.addEventListener('click', async () => {
 
     try {
         await addDoc(collection(db, 'Todo'), {
-            id: id,
+            id: new Date().getTime(),
             todo: inputVal
         })
-        append(id, inputVal)
+        append(inputVal)
         todoInput.value = ""
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
@@ -49,25 +49,26 @@ async function fetching() {
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
-            append(getId, getTodo)
-            // edit(getId, getTodo)
+            append(getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
 
     }
 }
-
-function append(id, todo) {
+const array = []
+function append(todo) {
     todoInput.value = ""
-    ul.innerHTML += `
+    const setId = new Date().getTime()
+    array.push(ul.innerHTML += `
              <li class="todo-item">
-            <input id="${id}" class="inp" value=${todo} type="text" readonly>
-            <button id="${id}"  class="btn-edit">Edit</button>
-            <button id="${id}" class="btn-delete">Delete</button>
+            <input id="${setId}" class="inp" value=${todo} type="text" readonly>
+            <button id="${setId}"  class="btn-edit">Edit</button>
+            <button id="${setId}" class="btn-delete">Delete</button>
             </li>
-           `
-
+           `)
+      console.log(array);
+      
     main.appendChild(ul)
 }
 
@@ -76,20 +77,22 @@ ul.addEventListener('click', (e) => {
     let inp = todoList.childNodes[1].children[0].id;
     let btn = e.target.classList.contains("btn-edit")
     let moreGet = todoList.childNodes[1].children[0]
-    // console.dir(moreGet);
+    console.log(inp);
     
-        if (btn) {
-        if(e.target.id === inp){
-          if(moreGet.hasAttribute('readonly')){
-            moreGet.removeAttribute('readonly')
-            moreGet.style.border = "1px solid blue"
-          }else{
-            moreGet.setAttribute('readonly', true)
-            moreGet.style.border = ""
-          }
+    // console.dir(moreGet);
+
+    if (btn) {
+        if (e.target.id === inp) {
+            if (moreGet.hasAttribute('readonly')) {
+                moreGet.removeAttribute('readonly')
+                moreGet.style.border = "1px solid blue"
+            } else {
+                moreGet.setAttribute('readonly', true)
+                moreGet.style.border = ""
+            }
         }
     }
-    
+
 
 })
 
