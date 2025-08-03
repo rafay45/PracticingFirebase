@@ -62,15 +62,11 @@ function append(id, todo) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="${id}" class="inp" value=${todo} type="text">
+            <input id="${id}" class="inp" value=${todo} type="text" readonly>
             <button id="${id}"  class="btn-edit">Edit</button>
             <button id="${id}" class="btn-delete">Delete</button>
             </li>
            `
-
-    let getInput = ul.childNodes[1].childNodes[1]
-    getInput.readOnly = true
-    getInput.style.outline = "none"
 
     main.appendChild(ul)
 }
@@ -78,14 +74,22 @@ function append(id, todo) {
 
 ul.addEventListener('click', (e) => {
     let inp = todoList.childNodes[1].children[0].id;
-    let more = document.querySelector('input')
     let btn = e.target.classList.contains("btn-edit")
-    if (btn) {
-        if (e.target.id === inp) {
-            more.removeAttribute('readonly');
-            more.focus()
+    let moreGet = todoList.childNodes[1].children[0]
+    // console.dir(moreGet);
+    
+        if (btn) {
+        if(e.target.id === inp){
+          if(moreGet.hasAttribute('readonly')){
+            moreGet.removeAttribute('readonly')
+            moreGet.style.border = "1px solid blue"
+          }else{
+            moreGet.setAttribute('readonly', true)
+            moreGet.style.border = ""
+          }
         }
     }
+    
 
 })
 
