@@ -49,48 +49,53 @@ async function fetching() {
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
-            append(getTodo)
+            append(getId, getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
 
     }
 }
-const array = []
-function append(todo) {
+
+function append(setId, todo) {
     todoInput.value = ""
-    const setId = new Date().getTime()
-    array.push(ul.innerHTML += `
+    ul.innerHTML += `
              <li class="todo-item">
             <input id="${setId}" class="inp" value=${todo} type="text" readonly>
             <button id="${setId}"  class="btn-edit">Edit</button>
             <button id="${setId}" class="btn-delete">Delete</button>
             </li>
-           `)
-      console.log(array);
-      
+           `
+    //   console.log(ul);
+
     main.appendChild(ul)
 }
 
 
 ul.addEventListener('click', (e) => {
-    let inp = todoList.childNodes[1].children[0].id;
     let btn = e.target.classList.contains("btn-edit")
-    let moreGet = todoList.childNodes[1].children[0]
-    console.log(inp);
-    
-    // console.dir(moreGet);
 
     if (btn) {
-        if (e.target.id === inp) {
-            if (moreGet.hasAttribute('readonly')) {
-                moreGet.removeAttribute('readonly')
-                moreGet.style.border = "1px solid blue"
-            } else {
-                moreGet.setAttribute('readonly', true)
-                moreGet.style.border = ""
+        const getElement = ul.children
+
+        for (var i = 0; i < getElement.length; i++) {
+            let getInp = getElement[i].children[0];
+            let getEditBtn = getElement[i].children[1]
+            // const moreGet = ul.children
+            // console.log(moreGet);
+
+            if (getInp.id === getEditBtn.id) {
+                if (moreGet.hasAttribute('readonly')) {
+                    moreGet.removeAttribute('readonly')
+                    moreGet.style.border = "1px solid blue"
+                } else {
+                    moreGet.setAttribute('readonly', true)
+                    moreGet.style.border = ""
+                }
             }
+
         }
+
     }
 
 
