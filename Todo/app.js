@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getDocs, collection, addDoc, getFirestore, deleteDoc, doc , updateDoc} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getDocs, collection, addDoc, getFirestore, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmUHMVGUXGvNG1WBSyyqEbLMnw3VOjbYE",
@@ -65,7 +65,7 @@ function append(setId, todo) {
             <button id="${setId}" class="btn-delete">Delete</button>
             </li>
            `
-           
+
     main.appendChild(ul)
 }
 
@@ -78,12 +78,13 @@ ul.addEventListener('click', (e) => {
         if (input.hasAttribute('readonly')) {
             input.removeAttribute('readonly')
             input.style.border = "1px solid #ccc"
+            input.nextElementSibling.innerText = "Save"
         } else {
             input.setAttribute('readonly', true)
             input.style.border = ""
+            input.nextElementSibling.innerText = "Edit"
         }
     }
-
 
 
 })
