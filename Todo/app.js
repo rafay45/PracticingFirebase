@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getDocs, collection, addDoc, getFirestore, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+import { getDocs, collection, addDoc, getFirestore, deleteDoc, doc , updateDoc} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmUHMVGUXGvNG1WBSyyqEbLMnw3VOjbYE",
@@ -18,7 +18,6 @@ const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const main = document.getElementById('main');
 const ul = document.createElement('ul')
-// const li = document.createElement('li')
 ul.className = "todo-list"
 ul.id = "todoList"
 
@@ -66,37 +65,25 @@ function append(setId, todo) {
             <button id="${setId}" class="btn-delete">Delete</button>
             </li>
            `
-    //   console.log(ul);
-
+           
     main.appendChild(ul)
 }
 
 
 ul.addEventListener('click', (e) => {
     let btn = e.target.classList.contains("btn-edit")
+    const input = e.target.previousElementSibling;
 
     if (btn) {
-        const getElement = ul.children
-
-        for (var i = 0; i < getElement.length; i++) {
-            let getInp = getElement[i].children[0];
-            let getEditBtn = getElement[i].children[1]
-            // const moreGet = ul.children
-            // console.log(moreGet);
-
-            if (getInp.id === getEditBtn.id) {
-                if (moreGet.hasAttribute('readonly')) {
-                    moreGet.removeAttribute('readonly')
-                    moreGet.style.border = "1px solid blue"
-                } else {
-                    moreGet.setAttribute('readonly', true)
-                    moreGet.style.border = ""
-                }
-            }
-
+        if (input.hasAttribute('readonly')) {
+            input.removeAttribute('readonly')
+            input.style.border = "1px solid #ccc"
+        } else {
+            input.setAttribute('readonly', true)
+            input.style.border = ""
         }
-
     }
+
 
 
 })
