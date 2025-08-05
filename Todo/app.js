@@ -48,7 +48,7 @@ async function fetching() {
         querySnapshot.forEach((doc) => {
             const getId = doc.data().id
             const getTodo = doc.data().todo
-            append(getId, getTodo)
+            append(getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
@@ -56,13 +56,13 @@ async function fetching() {
     }
 }
 
-function append(setId, todo) {
+function append(todo) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="${setId}" class="inp" value=${todo} type="text" readonly>
-            <button id="${setId}"  class="btn-edit">Edit</button>
-            <button id="${setId}" class="btn-delete">Delete</button>
+            <input id="li-inp" class="inp" value=${todo} type="text" readonly>
+            <button id="li-edit"  class="btn-edit">Edit</button>
+            <button id="li-del" class="btn-delete">Delete</button>
             </li>
            `
 
@@ -70,9 +70,9 @@ function append(setId, todo) {
 }
 
 
-ul.addEventListener('click', (e) => {
+ul.addEventListener('click', async (e) => {
     let btn = e.target.classList.contains("btn-edit")
-    const input = e.target.previousElementSibling;
+    let input = e.target.previousElementSibling;
 
     if (btn) {
         if (input.hasAttribute('readonly')) {
@@ -85,8 +85,14 @@ ul.addEventListener('click', (e) => {
             input.nextElementSibling.innerText = "Edit"
         }
     }
-
-
 })
+
+// let newVal = d
+// try {
+//   updateDoc(doc(db, "Todos", id), { todo: newVal })
+// } catch (error) {
+//  console.log("The Error is in UpdateDoc", error);
+ 
+// }
 
 window.addEventListener("DOMContentLoaded", fetching)
