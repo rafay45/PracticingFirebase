@@ -30,11 +30,12 @@ todoHandler.addEventListener('click', async () => {
     }
 
     try {
-        await addDoc(collection(db, 'Todo'), {
+        const docRef = await addDoc(collection(db, 'Todo'), {
             id: new Date().getTime(),
             todo: inputVal
         })
-        append(inputVal)
+        const id = docRef.id
+        append(id, inputVal)
         todoInput.value = ""
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
@@ -46,7 +47,6 @@ async function fetching() {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         main.innerHTML = ""
         querySnapshot.forEach((doc) => {
-            const getId = doc.data().id
             const getTodo = doc.data().todo
             append(getTodo)
         });
@@ -56,13 +56,13 @@ async function fetching() {
     }
 }
 
-function append(todo) {
+function append(setId, todo) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="li-inp" class="inp" value=${todo} type="text" readonly>
-            <button id="li-edit"  class="btn-edit">Edit</button>
-            <button id="li-del" class="btn-delete">Delete</button>
+            <input id="${setId}" class="inp" value=${todo} type="text" readonly>
+            <button id="${setId}"  class="btn-edit">Edit</button>
+            <button id="${setId}" class="btn-delete">Delete</button>
             </li>
            `
 
@@ -84,15 +84,16 @@ ul.addEventListener('click', async (e) => {
             input.style.border = ""
             input.nextElementSibling.innerText = "Edit"
         }
+
+        let newVal = input.value
+        let id = input.id
+        try {
+            await updateDoc(doc(db, "Todos", id ), { todo: newVal })
+        } catch (error) {
+            console.log("The Error is in UpdateDoc", error);
+
+        }
     }
 })
-
-// let newVal = d
-// try {
-//   updateDoc(doc(db, "Todos", id), { todo: newVal })
-// } catch (error) {
-//  console.log("The Error is in UpdateDoc", error);
- 
-// }
 
 window.addEventListener("DOMContentLoaded", fetching)
