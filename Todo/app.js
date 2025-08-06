@@ -34,21 +34,26 @@ todoHandler.addEventListener('click', async () => {
             id: new Date().getTime(),
             todo: inputVal
         })
-        const id = docRef.id
-        append(id, inputVal)
         todoInput.value = ""
+        const id = docRef.id
+        console.log(id);
+
+        fetching(id)
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
     }
 })
 
-async function fetching() {
+async function fetching(id) {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         main.innerHTML = ""
         querySnapshot.forEach((doc) => {
             const getTodo = doc.data().todo
-            append(getTodo)
+            const setId = id
+            console.log(setId);
+
+            append(setId, getTodo)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
@@ -56,23 +61,24 @@ async function fetching() {
     }
 }
 
-function append(setId, todo) {
+function append(id, todo) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="${setId}" class="inp" value=${todo} type="text" readonly>
-            <button id="${setId}"  class="btn-edit">Edit</button>
-            <button id="${setId}" class="btn-delete">Delete</button>
+            <input id="${id}"  class="inp" value=${todo} type="text" readonly>
+            <button  class="btn-edit">Edit</button>
+            <button class="btn-delete">Delete</button>
             </li>
            `
 
     main.appendChild(ul)
 }
 
-
 ul.addEventListener('click', async (e) => {
     let btn = e.target.classList.contains("btn-edit")
     let input = e.target.previousElementSibling;
+    console.log(input);
+
 
     if (btn) {
         if (input.hasAttribute('readonly')) {
@@ -88,12 +94,13 @@ ul.addEventListener('click', async (e) => {
         let newVal = input.value
         let id = input.id
         try {
-            await updateDoc(doc(db, "Todos", id ), { todo: newVal })
+            await updateDoc(doc(db, "Todos", id), {
+                 id: new Date().getTime(),
+                 todo: newVal
+                })
         } catch (error) {
             console.log("The Error is in UpdateDoc", error);
 
         }
     }
 })
-
-window.addEventListener("DOMContentLoaded", fetching)
