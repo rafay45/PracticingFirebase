@@ -13,7 +13,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const todoHandler = document.getElementById('addTodoBtn');
 const todoInput = document.getElementById('todoInput');
 const main = document.getElementById('main');
@@ -45,8 +44,8 @@ async function fetching() {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         main.innerHTML = ""
         querySnapshot.forEach((doc) => {
-            const getTodo = doc.data().todo
-            const setId = doc.id
+            const getTodo = doc.data().todo;
+            const setId = doc.id;
             append(getTodo, setId)
         });
     } catch (error) {
@@ -70,7 +69,6 @@ function append(todo, id) {
 ul.addEventListener('click', async (e) => {
     let btn = e.target.classList.contains("btn-edit")
     let input = e.target.previousElementSibling;
-
     if (btn) {
         if (input.hasAttribute('readonly')) {
             input.removeAttribute('readonly')
@@ -81,7 +79,6 @@ ul.addEventListener('click', async (e) => {
             input.style.border = ""
             input.nextElementSibling.innerText = "Edit"
         }
-
         let newVal = input.value
         let id = input.id
         try {
@@ -92,6 +89,14 @@ ul.addEventListener('click', async (e) => {
             console.log("The Error is in UpdateDoc", error);
 
         }
+    }
+
+    const btnDel = e.target.classList.contains("btn-delete")
+    const id = e.target.parentElement.firstElementChild.id
+    if (btnDel) {
+        e.target.parentElement.remove()
+        await deleteDoc(doc(db, "Todo", id));
+
     }
 })
 
