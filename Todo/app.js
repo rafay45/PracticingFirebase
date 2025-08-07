@@ -30,30 +30,24 @@ todoHandler.addEventListener('click', async () => {
     }
 
     try {
-        const docRef = await addDoc(collection(db, 'Todo'), {
-            id: new Date().getTime(),
+        await addDoc(collection(db, 'Todo'), {
             todo: inputVal
         })
         todoInput.value = ""
-        const id = docRef.id
-        console.log(id);
-
-        fetching(id)
+        append(inputVal)
     } catch (error) {
         console.log('The Error is in addDocs ::', error);
     }
 })
 
-async function fetching(id) {
+async function fetching() {
     try {
         const querySnapshot = await getDocs(collection(db, 'Todo'));
         main.innerHTML = ""
         querySnapshot.forEach((doc) => {
             const getTodo = doc.data().todo
-            const setId = id
-            console.log(setId);
-
-            append(setId, getTodo)
+            const setId = doc.id
+            append(getTodo, setId)
         });
     } catch (error) {
         console.log('The error is in getDocs ::', error);
@@ -61,7 +55,7 @@ async function fetching(id) {
     }
 }
 
-function append(id, todo) {
+function append(todo, id) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
@@ -70,15 +64,12 @@ function append(id, todo) {
             <button class="btn-delete">Delete</button>
             </li>
            `
-
     main.appendChild(ul)
 }
 
 ul.addEventListener('click', async (e) => {
     let btn = e.target.classList.contains("btn-edit")
     let input = e.target.previousElementSibling;
-    console.log(input);
-
 
     if (btn) {
         if (input.hasAttribute('readonly')) {
@@ -94,13 +85,14 @@ ul.addEventListener('click', async (e) => {
         let newVal = input.value
         let id = input.id
         try {
-            await updateDoc(doc(db, "Todos", id), {
-                 id: new Date().getTime(),
-                 todo: newVal
-                })
+            await updateDoc(doc(db, "Todo", id), {
+                todo: newVal
+            })
         } catch (error) {
             console.log("The Error is in UpdateDoc", error);
 
         }
     }
 })
+
+window.addEventListener("DOMContentLoaded", fetching)
