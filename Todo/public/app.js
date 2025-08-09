@@ -22,7 +22,7 @@ ul.id = "todoList"
 
 
 todoHandler.addEventListener('click', async () => {
-    let inputVal = todoInput.value
+    let inputVal = todoInput.value.trim()
     if (!inputVal) {
         alert("field is empty")
         return;
@@ -58,7 +58,7 @@ function append(todo, id) {
     todoInput.value = ""
     ul.innerHTML += `
              <li class="todo-item">
-            <input id="${id}"  class="inp" value=${todo} type="text" readonly>
+            <input id="${id}"  class="inp" value="${todo}" type="text" readonly>
             <button  class="btn-edit">Edit</button>
             <button class="btn-delete">Delete</button>
             </li>
@@ -80,12 +80,12 @@ ul.addEventListener('click', async (e) => {
             input.nextElementSibling.innerText = "Edit"
         }
 
-        let newVal = input.value
+        let newVal = input.value.trim()
         let id = input.id
-        if (newVal) {
+        if (newVal.trim()) {
             try {
                 await updateDoc(doc(db, "Todo", id), {
-                    todo: newVal
+                    todo: newVal.trim()
                 })
             } catch (error) {
                 console.log("The Error is in UpdateDoc", error);
